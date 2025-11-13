@@ -6,3 +6,6 @@ export 'storage.dart';
 
 // Payment service layer
 export 'payment_service.dart';
+
+// Configuration and initialization
+export 'configuration.dart';
