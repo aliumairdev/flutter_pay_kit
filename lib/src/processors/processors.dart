@@ -10,3 +10,4 @@ export 'paddle_processor.dart';
 export 'braintree_processor.dart';
 export 'lemon_squeezy_processor.dart';
 export 'totalpay_processor.dart';
+export 'fake_processor.dart';
