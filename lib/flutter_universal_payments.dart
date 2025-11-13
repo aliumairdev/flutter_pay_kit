@@ -21,3 +21,6 @@ export 'src/utils/utils.dart';
 
 // Export exceptions
 export 'src/exceptions/exceptions.dart';
+
+// Export platforms
+export 'src/platforms/platforms.dart';
