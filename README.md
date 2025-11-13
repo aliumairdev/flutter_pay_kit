@@ -17,6 +17,7 @@ Flutter Universal Payments provides a consistent, easy-to-use interface for inte
 ## Features
 
 - Unified API across all payment processors
+- **Native Google Pay integration for Android**
 - Type-safe payment models using Freezed
 - State management with Riverpod
 - Comprehensive error handling
@@ -43,6 +44,8 @@ flutter pub get
 
 ## Quick Start
 
+### Standard Payment Processing
+
 ```dart
 import 'package:flutter_universal_payments/flutter_universal_payments.dart';
 
@@ -66,6 +69,34 @@ try {
   print('Payment failed: $e');
 }
 ```
+
+### Google Pay Integration (Android)
+
+```dart
+import 'package:flutter_universal_payments/flutter_universal_payments.dart';
+
+// Configure Google Pay
+final googlePayConfig = GooglePayConfig(
+  merchantId: 'your-merchant-id',
+  merchantName: 'Your Store',
+  environment: GooglePayEnvironment.production,
+);
+
+// Check availability
+final isAvailable = await googlePayConfig.isAvailable();
+
+if (isAvailable) {
+  // Request payment
+  final token = await googlePayConfig.requestPayment(amount: 2500);
+
+  if (token != null) {
+    // Process the token with your payment processor
+    print('Payment token: $token');
+  }
+}
+```
+
+For detailed Google Pay integration instructions, see [GOOGLE_PAY_INTEGRATION.md](GOOGLE_PAY_INTEGRATION.md).
 
 ## Architecture
 

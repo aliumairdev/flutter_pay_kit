@@ -9,3 +9,7 @@ export 'payment_service.dart';
 
 // Configuration and initialization
 export 'configuration.dart';
+
+// Google Pay integration
+export 'google_pay_handler.dart';
+export 'google_pay_config.dart';
