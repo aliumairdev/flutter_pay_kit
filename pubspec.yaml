@@ -1,0 +1,30 @@
+name: flutter_universal_payments
+description: A unified API for integrating multiple payment processors (Stripe, Paddle, Braintree, Lemon Squeezy, Totalpay Global) in Flutter apps
+version: 0.1.0
+homepage: https://github.com/aliumairdev/flutter_pay_kit
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+  dio: ^5.4.0
+  json_annotation: ^4.8.1
+  freezed_annotation: ^2.4.1
+  riverpod: ^2.5.0
+  flutter_riverpod: ^2.5.0
+  shared_preferences: ^2.2.2
+  equatable: ^2.0.5
+  uuid: ^4.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  freezed: ^2.4.6
+  mocktail: ^1.0.3
+  flutter_lints: ^3.0.0
