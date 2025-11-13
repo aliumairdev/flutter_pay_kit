@@ -17,6 +17,7 @@ Flutter Universal Payments provides a consistent, easy-to-use interface for inte
 ## Features
 
 - Unified API across all payment processors
+- **Native Google Pay integration for Android**
 - **Native Apple Pay integration for iOS** (iOS 13.0+)
 - Type-safe payment models using Freezed
 - State management with Riverpod
@@ -44,37 +45,33 @@ flutter pub get
 
 ## Quick Start
 
-### Standard Payment Processors
-
-```dart
-import 'package:flutter_universal_payments/flutter_universal_payments.dart';
-
-// Initialize a payment processor
-final processor = StripeProcessor(
-  apiKey: 'your_stripe_api_key',
-);
-
-// Process a payment
-try {
-  final result = await processor.processPayment(
-    amount: 1999, // Amount in cents
-    currency: 'USD',
-    paymentMethod: paymentMethod,
-  );
-
-  if (result.isSuccess) {
-    print('Payment successful: ${result.transactionId}');
-  }
-} catch (e) {
-  print('Payment failed: $e');
-}
-```
-
 ### Apple Pay Integration (iOS)
 
 ```dart
 import 'package:flutter_universal_payments/flutter_universal_payments.dart';
 
+// Configure Google Pay
+final googlePayConfig = GooglePayConfig(
+  merchantId: 'your-merchant-id',
+  merchantName: 'Your Store',
+  environment: GooglePayEnvironment.production,
+);
+
+// Check availability
+final isAvailable = await googlePayConfig.isAvailable();
+
+if (isAvailable) {
+  // Request payment
+  final token = await googlePayConfig.requestPayment(amount: 2500);
+
+  if (token != null) {
+    // Process the token with your payment processor
+    print('Payment token: $token');
+  }
+}
+```
+
+For detailed Google Pay integration instructions, see [GOOGLE_PAY_INTEGRATION.md](GOOGLE_PAY_INTEGRATION.md).
 // Check if Apple Pay is available
 final isAvailable = await ApplePayHandler.isAvailable();
 if (isAvailable) {
