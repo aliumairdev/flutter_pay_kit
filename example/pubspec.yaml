@@ -1,0 +1,31 @@
+name: flutter_payments_example
+description: Example app demonstrating all flutter_universal_payments package features
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core dependencies
+  flutter_universal_payments:
+    path: ../
+
+  # State management
+  flutter_riverpod: ^2.4.0
+  riverpod: ^2.4.0
+
+  # UI
+  cupertino_icons: ^1.0.6
+  intl: ^0.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
