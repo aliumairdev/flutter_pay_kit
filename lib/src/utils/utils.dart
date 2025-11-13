@@ -2,3 +2,5 @@
 library utils;
 
 // Export utility files here as they are created
+export 'logger.dart';
+export 'analytics_integrations.dart';
