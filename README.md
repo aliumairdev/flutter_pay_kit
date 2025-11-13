@@ -17,6 +17,7 @@ Flutter Universal Payments provides a consistent, easy-to-use interface for inte
 ## Features
 
 - Unified API across all payment processors
+- **Native Apple Pay integration for iOS** (iOS 13.0+)
 - Type-safe payment models using Freezed
 - State management with Riverpod
 - Comprehensive error handling
@@ -43,6 +44,8 @@ flutter pub get
 
 ## Quick Start
 
+### Standard Payment Processors
+
 ```dart
 import 'package:flutter_universal_payments/flutter_universal_payments.dart';
 
@@ -66,6 +69,31 @@ try {
   print('Payment failed: $e');
 }
 ```
+
+### Apple Pay Integration (iOS)
+
+```dart
+import 'package:flutter_universal_payments/flutter_universal_payments.dart';
+
+// Check if Apple Pay is available
+final isAvailable = await ApplePayHandler.isAvailable();
+if (isAvailable) {
+  // Request payment
+  final result = await ApplePayHandler.requestPayment(
+    amount: 1999, // $19.99 in cents
+    currency: 'USD',
+    merchantId: 'merchant.com.yourcompany.yourapp',
+    countryCode: 'US',
+    label: 'Premium Subscription',
+  );
+
+  // Process the payment token with your backend
+  final paymentData = result['paymentData'];
+  // Send to your payment processor
+}
+```
+
+For complete Apple Pay setup instructions, see [APPLE_PAY_SETUP.md](APPLE_PAY_SETUP.md).
 
 ## Architecture
 
