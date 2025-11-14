@@ -28,21 +28,12 @@ A unified, production-ready payment API for Flutter that supports multiple payme
 | **Paddle** | ✅ | ✅ | ✅ | ✅ | Sandbox |
 | **Braintree** | ✅ | ✅ | ✅ | ✅ | Sandbox |
 | **Lemon Squeezy** | ✅ | ✅ | ✅ | ✅ | Test Mode |
-| **Totalpay** | ✅ | ✅ | ✅ | ✅ | Sandbox |
+| **Totalpay** | 🚧 | 🚧 | 🚧 | 🚧 | Sandbox |
 | **Fake** | ✅ | ✅ | ✅ | ❌ | Built-in |
 
+**Note**: 🚧 = Partial implementation (Totalpay pending full API documentation)
+
 ## 🚀 Quick Start
-- Unified API across all payment processors
-- **Native Google Pay integration for Android**
-- **Native Apple Pay integration for iOS** (iOS 13.0+)
-- Type-safe payment models using Freezed
-- State management with Riverpod
-- Comprehensive error handling
-- Easy switching between processors
-- Built-in retry logic
-- Local payment method storage
-- Support for one-time and recurring payments
-- Production-ready architecture
 
 ### Installation
 
@@ -50,7 +41,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_universal_payments: ^0.1.0
+  flutter_universal_payments: ^1.0.0
 ```
 
 Then run:
@@ -60,8 +51,6 @@ flutter pub get
 ```
 
 ### Basic Usage
-
-### Apple Pay Integration (iOS)
 
 ```dart
 import 'package:flutter_universal_payments/flutter_universal_payments.dart';
@@ -223,11 +212,6 @@ final charge = await paymentService.makePayment(
   currency: 'USD',
   description: 'Premium upgrade',
   paymentMethodToken: token,
-// Configure Google Pay
-final googlePayConfig = GooglePayConfig(
-  merchantId: 'your-merchant-id',
-  merchantName: 'Your Store',
-  environment: GooglePayEnvironment.production,
 );
 ```
 
@@ -371,7 +355,18 @@ flutter run
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 📱 Native Mobile Payments
+
+### Google Pay Integration (Android)
+
+```dart
+// Configure Google Pay
+final googlePayConfig = GooglePayConfig(
+  merchantId: 'your-merchant-id',
+  merchantName: 'Your Store',
+  environment: GooglePayEnvironment.production,
+);
+
 // Check availability
 final isAvailable = await googlePayConfig.isAvailable();
 
@@ -387,8 +382,13 @@ if (isAvailable) {
 ```
 
 For detailed Google Pay integration instructions, see [GOOGLE_PAY_INTEGRATION.md](GOOGLE_PAY_INTEGRATION.md).
+
+### Apple Pay Integration (iOS)
+
+```dart
 // Check if Apple Pay is available
 final isAvailable = await ApplePayHandler.isAvailable();
+
 if (isAvailable) {
   // Request payment
   final result = await ApplePayHandler.requestPayment(
@@ -407,7 +407,7 @@ if (isAvailable) {
 
 For complete Apple Pay setup instructions, see [APPLE_PAY_SETUP.md](APPLE_PAY_SETUP.md).
 
-## Architecture
+## 🆘 Support
 
 - **Documentation**: [doc/getting_started.md](doc/getting_started.md)
 - **Issues**: [GitHub Issues](https://github.com/aliumairdev/flutter_pay_kit/issues)
@@ -415,15 +415,17 @@ For complete Apple Pay setup instructions, see [APPLE_PAY_SETUP.md](APPLE_PAY_SE
 
 ## 🗺️ Roadmap
 
-- [ ] Apple Pay support
-- [ ] Google Pay support
+- [x] Apple Pay support (iOS 13.0+)
+- [x] Google Pay support (Android)
 - [ ] PayPal direct integration
 - [ ] Cryptocurrency payments
 - [ ] Invoice generation
 - [ ] Receipt management
-- [ ] Multi-currency support
+- [ ] Enhanced multi-currency support
 - [ ] Tax calculation integration
 - [ ] Fraud detection hooks
+- [ ] Refund management
+- [ ] Dispute handling
 
 ## 📦 Requirements
 

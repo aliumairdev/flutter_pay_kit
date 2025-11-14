@@ -7,15 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-11-14
+
 ### Added
-- Comprehensive package documentation
-  - Getting started guide with detailed setup instructions for each processor
-  - Processor-specific integration guides (Stripe, Paddle, Braintree, Lemon Squeezy, Totalpay)
-  - Widget documentation with examples and customization options
-  - Advanced usage guide covering webhooks, custom processors, and best practices
-  - Contributing guidelines
-  - Example code snippets for common use cases
-- Native Android Google Pay integration
+- **Native Apple Pay integration for iOS**
+  - `ApplePayHandler` for platform channel communication
+  - Support for iOS 13.0+ with PassKit framework
+  - Comprehensive error handling and validation
+  - Example app demonstrating Apple Pay usage
+  - Detailed setup guide (APPLE_PAY_SETUP.md)
+  - Support for various payment networks (Visa, Mastercard, Amex, etc.)
+
+- **Native Android Google Pay integration**
   - `GooglePayHandler` for platform channel communication
   - `GooglePayConfig` for easy configuration
   - Native Kotlin implementation (`FlutterUniversalPaymentsPlugin.kt`)
@@ -23,6 +26,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive error handling and validation
   - Example app demonstrating Google Pay usage
   - Detailed integration guide (GOOGLE_PAY_INTEGRATION.md)
+
+- **Comprehensive package documentation**
+  - Getting started guide with detailed setup instructions for each processor
+  - Processor-specific integration guides (Stripe, Paddle, Braintree, Lemon Squeezy, Totalpay)
+  - Widget documentation with examples and customization options
+  - Advanced usage guide covering webhooks, custom processors, and best practices
+  - Contributing guidelines
+  - Example code snippets for common use cases
+  - Configuration guide for easy setup
+
+### Changed
+- Marked package as production-ready with 1.0.0 release
+- Enhanced README with clearer feature descriptions
+- Improved code documentation and inline comments
+- Updated example app with Apple Pay and Google Pay demonstrations
+
+### Note
+- **Totalpay processor**: Currently in partial implementation status pending full API documentation access. Basic functionality is available, but some advanced features require Totalpay merchant account access for complete API documentation.
 
 ## [0.1.0] - 2025-11-13
 
@@ -177,7 +198,8 @@ This is the first stable release. No migration needed.
 
 ## Known Issues
 
-### Version 0.1.0
+### Version 1.0.0
+- Totalpay processor has partial implementation pending full API documentation
 - Some processors may have rate limits affecting high-volume applications
 - Webhook signature verification requires proper server setup
 - Test mode behavior may vary slightly between processors
@@ -189,15 +211,16 @@ Report issues at: https://github.com/aliumairdev/flutter_pay_kit/issues
 ## Roadmap
 
 See [README.md](README.md#roadmap) for upcoming features:
-- Apple Pay support
-- Google Pay support
 - PayPal direct integration
 - Cryptocurrency payments
 - Invoice generation
+- Receipt management
 - Multi-currency support
 - Tax calculation integration
+- Fraud detection hooks
 
 ---
 
-[Unreleased]: https://github.com/aliumairdev/flutter_pay_kit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/aliumairdev/flutter_pay_kit/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/aliumairdev/flutter_pay_kit/releases/tag/v1.0.0
 [0.1.0]: https://github.com/aliumairdev/flutter_pay_kit/releases/tag/v0.1.0
