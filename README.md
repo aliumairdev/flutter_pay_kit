@@ -32,6 +32,17 @@ A unified, production-ready payment API for Flutter that supports multiple payme
 | **Fake** | ✅ | ✅ | ✅ | ❌ | Built-in |
 
 ## 🚀 Quick Start
+- Unified API across all payment processors
+- **Native Google Pay integration for Android**
+- **Native Apple Pay integration for iOS** (iOS 13.0+)
+- Type-safe payment models using Freezed
+- State management with Riverpod
+- Comprehensive error handling
+- Easy switching between processors
+- Built-in retry logic
+- Local payment method storage
+- Support for one-time and recurring payments
+- Production-ready architecture
 
 ### Installation
 
@@ -49,6 +60,8 @@ flutter pub get
 ```
 
 ### Basic Usage
+
+### Apple Pay Integration (iOS)
 
 ```dart
 import 'package:flutter_universal_payments/flutter_universal_payments.dart';
@@ -210,6 +223,11 @@ final charge = await paymentService.makePayment(
   currency: 'USD',
   description: 'Premium upgrade',
   paymentMethodToken: token,
+// Configure Google Pay
+final googlePayConfig = GooglePayConfig(
+  merchantId: 'your-merchant-id',
+  merchantName: 'Your Store',
+  environment: GooglePayEnvironment.production,
 );
 ```
 
@@ -354,6 +372,42 @@ flutter run
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
+// Check availability
+final isAvailable = await googlePayConfig.isAvailable();
+
+if (isAvailable) {
+  // Request payment
+  final token = await googlePayConfig.requestPayment(amount: 2500);
+
+  if (token != null) {
+    // Process the token with your payment processor
+    print('Payment token: $token');
+  }
+}
+```
+
+For detailed Google Pay integration instructions, see [GOOGLE_PAY_INTEGRATION.md](GOOGLE_PAY_INTEGRATION.md).
+// Check if Apple Pay is available
+final isAvailable = await ApplePayHandler.isAvailable();
+if (isAvailable) {
+  // Request payment
+  final result = await ApplePayHandler.requestPayment(
+    amount: 1999, // $19.99 in cents
+    currency: 'USD',
+    merchantId: 'merchant.com.yourcompany.yourapp',
+    countryCode: 'US',
+    label: 'Premium Subscription',
+  );
+
+  // Process the payment token with your backend
+  final paymentData = result['paymentData'];
+  // Send to your payment processor
+}
+```
+
+For complete Apple Pay setup instructions, see [APPLE_PAY_SETUP.md](APPLE_PAY_SETUP.md).
+
+## Architecture
 
 - **Documentation**: [doc/getting_started.md](doc/getting_started.md)
 - **Issues**: [GitHub Issues](https://github.com/aliumairdev/flutter_pay_kit/issues)
